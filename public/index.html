@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apify Integration App</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 0C8.954 0 0 8.954 0 20C0 31.046 8.954 40 20 40C31.046 40 40 31.046 40 20C40 8.954 31.046 0 20 0ZM20 7.5C26.904 7.5 32.5 13.096 32.5 20C32.5 26.904 26.904 32.5 20 32.5C13.096 32.5 7.5 26.904 7.5 20C7.5 13.096 13.096 7.5 20 7.5Z" fill="#5664D2"/>
+          <path d="M20 15C17.2386 15 15 17.2386 15 20C15 22.7614 17.2386 25 20 25C22.7614 25 25 22.7614 25 20C25 17.2386 22.7614 15 20 15Z" fill="#5664D2"/>
+        </svg>
+      </div>
+      <h1>Apify Integration Demo</h1>
+      <p>Explore and run Apify actors with your API key</p>
+    </header>
+
+    <main>
+      <!-- API Key Authentication Section -->
+      <section id="auth-section" class="card">
+        <h2><i class="fas fa-key"></i> Authentication</h2>
+        <div class="form-group">
+          <label for="api-key">Apify API Key:</label>
+          <div class="input-group">
+            <div class="password-input-wrapper">
+              <input type="password" id="api-key" placeholder="Enter your Apify API key">
+              <button type="button" id="toggle-api-key" class="toggle-password" aria-label="Toggle API key visibility">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+            <button id="validate-key" class="btn"><i class="fas fa-check"></i> Validate</button>
+          </div>
+          <small><i class="fas fa-shield-alt"></i> Your API key is only used for requests and not stored</small>
+        </div>
+        <div id="auth-status" class="status-message hidden"></div>
+      </section>
+
+      <!-- Actor Selection Section (Hidden until authenticated) -->
+      <section id="actor-section" class="card hidden">
+        <h2><i class="fas fa-robot"></i> Select an Actor</h2>
+        <div class="form-group">
+          <label for="actor-select">Available Actors:</label>
+          <select id="actor-select">
+            <option value="">-- Select an actor --</option>
+          </select>
+        </div>
+        <div id="actor-info" class="hidden">
+          <h3 id="actor-name"><i class="fas fa-cog"></i> <span></span></h3>
+          <p id="actor-description"></p>
+        </div>
+      </section>
+
+      <!-- Input Schema Section (Hidden until actor selected) -->
+      <section id="input-section" class="card hidden">
+        <h2><i class="fas fa-sliders-h"></i> Configure Input</h2>
+        <div id="input-schema-form">
+          <!-- Dynamically generated form based on actor schema -->
+        </div>
+        <button id="run-actor" class="btn btn-primary"><i class="fas fa-play-circle"></i> Run Actor</button>
+      </section>
+
+      <!-- Results Section (Hidden until run completes) -->
+      <section id="results-section" class="card hidden">
+        <h2><i class="fas fa-chart-bar"></i> Results</h2>
+        <div class="loader hidden" id="results-loader">
+          <div class="spinner"></div>
+          <p>Running actor, please wait...</p>
+        </div>
+        <div id="run-status" class="status-message"></div>
+        <div id="results-container">
+          <div class="results-header">
+            <h3>Output Data</h3>
+            <button id="copy-results" class="btn btn-sm"><i class="fas fa-copy"></i> Copy</button>
+          </div>
+          <pre id="results-json"></pre>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p><i class="fas fa-code"></i> Built for Apify Integration Demo</p>
+      <p class="version">Version 1.0</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
